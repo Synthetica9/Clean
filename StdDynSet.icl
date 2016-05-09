@@ -53,7 +53,7 @@ isEmptySet a = nrOfElts a == 0
 
 memberOfSet :: a Set -> Bool | Set a
 memberOfSet _ (Set []) = False
-memberOfSet x (Set [(_, _, f) : ys]
+memberOfSet x (Set [(_, _, f) : ys])
     | f (dynamic x) = True // Let's just hope f isn't lying...
     | otherwise = memberOfSet x (Set ys)
 
