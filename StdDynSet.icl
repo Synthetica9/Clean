@@ -4,7 +4,7 @@ implementation module StdDynSet
 import StdEnv
 import StdDynamic
 
-class Set a | TC, ==, toString a
+class Set a | TC, ==, Eq, toString a
 
 :: Set = Set [(Dynamic, String, (Dynamic -> Bool))]
 
@@ -24,7 +24,7 @@ where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
 toSet :: a -> Set | Set a
 toSet a = listToSet [a]
 
-listToSet :: [a] -> Set | Set, Eq a
+listToSet :: [a] -> Set | Set a
 listToSet xs = Set (map setElem (removeDup xs))
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
