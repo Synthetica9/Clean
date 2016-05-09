@@ -38,10 +38,12 @@ nub [x : xs]
     | elem x xs = (nub xs)
     | otherwise = [x : nub xs]
 
-elem _ [] = False
-elem x [y : ys]
-    | x == y = True
-    | otherwise = elem x ys
+elem = elemBy (==)
+
+elemBy _ _ [] = False
+elemBy f x [y : ys]
+    | f x y = True
+    | otherwise = elemBy f x ys
 
 setElem :: a -> SetElem | Set a
 setElem a = (dynamic a, toString a, eq a) where
