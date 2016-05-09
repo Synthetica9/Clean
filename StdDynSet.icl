@@ -4,7 +4,7 @@ implementation module StdDynSet
 import StdEnv
 import StdDynamic
 
-class Set a | TC, ==, Eq, toString a
+class Set a | TC, ==, toString a
 
 :: Set = Set [(Dynamic, String, (Dynamic -> Bool))]
 
