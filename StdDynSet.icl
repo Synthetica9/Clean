@@ -26,13 +26,13 @@ toSet a = listToSet [a]
 
 listToSet :: [a] -> Set | Set a
 listToSet [] = Set []
-listToSet xs = Set (map setElem (removeDoubles xs))
+listToSet xs = Set (map setElem (nub xs))
 
-removeDoubles :: [a] -> [a] | == a
-removeDoubles [] = []
-removeDoubles [x : xs]
-    | elem x xs = (removeDoubles xs)
-    | otherwise = [x : removeDoubles xs]
+nub :: [a] -> [a] | == a
+nub [] = []
+nub [x : xs]
+    | elem x xs = (nub xs)
+    | otherwise = [x : nub xs]
 
 elem _ [] = False
 elem x [y : ys]
