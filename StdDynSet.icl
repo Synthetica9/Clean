@@ -34,6 +34,7 @@ removeDoubles [x : xs]
     | elem x xs = (removeDoubles xs)
     | otherwise = [x : removeDoubles xs]
 
+elem _ [] = False
 elem x [y : ys]
     | x == y = True
     | otherwise = elem x ys
