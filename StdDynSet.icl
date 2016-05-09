@@ -1,3 +1,4 @@
+// Partially copied from our implementation of assignment 3 of FP1 (in Haskell)
 implementation module StdDynSet
 
 import StdEnv
@@ -10,8 +11,12 @@ class Set a | TC, ==, toString a
 instance zero Set
 where zero = abort "zero instance voor Set nog niet geimplementeerd.\n"
 
-instance toString Set
-where toString a = abort "toString instance voor Set nog niet geimplementeerd.\n"
+instance toString Set where
+    toString (Set []) = "∅"
+    toString (Set [(_, s, _) : xs]) = "{" +++ s +++ trailing xs where
+        trailing [] = "}"
+        trailing [(_, s, _) : xs] = ", " +++ s +++ trailing xs
+
 
 instance == Set
 where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
