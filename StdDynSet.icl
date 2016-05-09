@@ -31,8 +31,12 @@ listToSet xs = Set (map setElem (removeDoubles xs))
 removeDoubles :: [a] -> [a] | == a
 removeDoubles [] = []
 removeDoubles [x : xs]
-    | isMember x xs = (removeDoubles xs)
+    | elem x xs = (removeDoubles xs)
     | otherwise = [x : removeDoubles xs]
+
+elem x [y : ys]
+    | x == y = True
+    | otherwise = elem x ys
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
 setElem a = (dynamic a, toString a, eq a) where
