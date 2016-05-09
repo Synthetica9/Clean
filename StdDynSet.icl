@@ -17,7 +17,16 @@ instance == Set
 where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
 
 toSet :: a -> Set | Set a
-toSet a = abort "toSet nog niet geimplementeerd.\n"
+toSet a = listToSet [a]
+
+listToSet :: [a] -> Set | Set a
+listToSet xs = map setElem xs
+
+setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
+setElem a = (toDynamic a, toString a, eq a) where
+    eq :: a -> Dynamic -> Bool
+    eq x (y :: a^) = x == y
+    eq _ _ = False
 
 nrOfElts :: Set -> Int
 nrOfElts a = abort "nrOfElts nog niet geimplementeerd.\n"
