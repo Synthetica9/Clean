@@ -46,10 +46,10 @@ setElem a = (dynamic a, toString a, eq a) where
     eq _ _ = False
 
 nrOfElts :: Set -> Int
-nrOfElts a = abort "nrOfElts nog niet geimplementeerd.\n"
+nrOfElts (Set a) = length a
 
 isEmptySet :: Set -> Bool
-isEmptySet a = abort "isEmptySet nog niet geimplementeerd.\n"
+isEmptySet a = nrOfElts a == 0
 
 memberOfSet :: a Set -> Bool | Set a
 memberOfSet x a = abort "memberOfSet nog niet geimplementeerd.\n"
