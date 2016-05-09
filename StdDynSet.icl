@@ -24,7 +24,7 @@ listToSet xs = map setElem xs
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
 setElem a = (toDynamic a, toString a, eq a) where
-    eq :: a -> Dynamic -> Bool
+    eq :: a, Dynamic -> Bool
     eq x (y :: a^) = x == y
     eq _ _ = False
 
