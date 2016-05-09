@@ -25,7 +25,7 @@ toSet :: a -> Set | Set a
 toSet a = listToSet [a]
 
 listToSet :: [a] -> Set | Set a
-listToSet xs = Set (map setElem xs)
+listToSet xs = Set (map setElem (nub xs))
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
 setElem a = (dynamic a, toString a, eq a) where
