@@ -52,7 +52,13 @@ isEmptySet :: Set -> Bool
 isEmptySet a = nrOfElts a == 0
 
 memberOfSet :: a Set -> Bool | Set a
-memberOfSet x a = abort "memberOfSet nog niet geimplementeerd.\n"
+memberOfSet _ (Set []) = False
+memberOfSet x (Set [(_, _, f) : ys]
+    | f x = True // Let's just hope f isn't lying...
+    | otherwise = memberOfSet x (Set ys)
+
+checkEmpty :: (Set -> Set -> Set) Set Set -> Bool
+checkEmpty f x y = isEmptySet (f x y)
 
 isSubset :: Set Set -> Bool
 isSubset a b = abort "isSubset nog niet geimplementeerd.\n"
