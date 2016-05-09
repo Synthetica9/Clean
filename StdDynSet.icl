@@ -82,4 +82,4 @@ intersection a b = abort "intersection nog niet geimplementeerd.\n"
 without :: Set Set -> Set
 without a b = abort "without nog niet geimplementeerd.\n"
 
-Start = toString (union (listToSet [1,2,3, 2, 2, 3]) (listToSet ["a", "b"]))
+Start = toString (union (listToSet [1,2,3, 2, 2, 3]) (listToSet ["Hello", "world"]))
