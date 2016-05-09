@@ -26,14 +26,13 @@ toSet a = listToSet [a]
 
 listToSet :: [a] -> Set | Set a
 listToSet [] = Set []
-listToSet xs = Set (map setElem xs)
+listToSet xs = Set (map setElem (removeDoubles xs))
 
-nub :: [a] -> [a] | == a
-nub a = nub` a a where
-	nub` [] [x : xs] = [x : xs]
-	nub` [x : xs] [y : ys] 
-		| x == y = ys
-		| otherwise = [y : ys]
+removeDoubles :: [a] -> [a] | == a
+removeDoubles [] = []
+removeDoubles [x : xs]
+    | isMember x xs = (removeDoubles xs)
+    | otherwise = (x : removeDoubles xs)
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
 setElem a = (dynamic a, toString a, eq a) where
