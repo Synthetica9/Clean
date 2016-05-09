@@ -24,8 +24,16 @@ where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
 toSet :: a -> Set | Set a
 toSet a = listToSet [a]
 
-// listToSet :: [a] -> Set | Set a
-// listToSet xs = Set (map setElem (removeDup xs))
+listToSet :: [a] -> Set | Set a
+listToSet [] = Set []
+listToSet xs = Set (map setElem xs)
+
+nub :: [a] -> [a] | == a
+nub a = nub` a a where
+	nub` [] [x : xs] = [x : xs]
+	nub` [x : xs] [y : ys] 
+		| x == y = ys
+		| otherwise = [y : ys]
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
 setElem a = (dynamic a, toString a, eq a) where
@@ -57,4 +65,4 @@ intersection a b = abort "intersection nog niet geimplementeerd.\n"
 without :: Set Set -> Set
 without a b = abort "without nog niet geimplementeerd.\n"
 
-Start = "Hello World!"
+Start = toString (listToSet [1,2,3])
