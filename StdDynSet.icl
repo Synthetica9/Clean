@@ -6,10 +6,11 @@ import StdDynamic
 
 class Set a | TC, ==, toString a
 
-:: Set = Set [(Dynamic, String, (Dynamic -> Bool))]
+:: Set = Set [SetElem]
+:: SetElem :== (Dynamic, String, (Dynamic -> Bool))
 
-instance zero Set
-where zero = abort "zero instance voor Set nog niet geimplementeerd.\n"
+instance zero Set where
+    zero = Set []
 
 instance toString Set where
     toString (Set []) = "∅"
@@ -23,6 +24,9 @@ where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
 
 toSet :: a -> Set | Set a
 toSet a = listToSet [a]
+
+elemEq :: SetElem SetElem -> Bool
+elemEq (a, _, _) (_, _, f) = f a
 
 listToSet :: [a] -> Set | Set a
 listToSet [] = Set []
@@ -39,7 +43,7 @@ elem x [y : ys]
     | x == y = True
     | otherwise = elem x ys
 
-setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
+setElem :: a -> SetElem | Set a
 setElem a = (dynamic a, toString a, eq a) where
     eq :: a Dynamic -> Bool | Set a
     eq x (y :: a^) = x == y
@@ -67,7 +71,7 @@ isStrictSubset :: Set Set -> Bool
 isStrictSubset a b = abort "isStrictSubset nog niet geimplementeerd.\n"
 
 union :: Set Set -> Set
-union a b = abort "union nog niet geimplementeerd.\n"
+union (Set x) (Set y) = abort "Errrrrrr!"
 
 intersection :: Set Set -> Set
 intersection a b = abort "intersection nog niet geimplementeerd.\n"
