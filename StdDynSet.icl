@@ -57,4 +57,4 @@ intersection a b = abort "intersection nog niet geimplementeerd.\n"
 without :: Set Set -> Set
 without a b = abort "without nog niet geimplementeerd.\n"
 
-Start = listToSet []
+Start = listToSet [1]
