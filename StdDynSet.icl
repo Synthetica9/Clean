@@ -32,7 +32,7 @@ removeDoubles :: [a] -> [a] | == a
 removeDoubles [] = []
 removeDoubles [x : xs]
     | isMember x xs = (removeDoubles xs)
-    | otherwise = (x : removeDoubles xs)
+    | otherwise = [x : removeDoubles xs]
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
 setElem a = (dynamic a, toString a, eq a) where
