@@ -32,11 +32,12 @@ listToSet :: [a] -> Set | Set a
 listToSet [] = Set []
 listToSet xs = Set (map setElem (nub xs))
 
-nub :: [a] -> [a] | == a
-nub [] = []
-nub [x : xs]
-    | elem x xs = (nub xs)
-    | otherwise = [x : nub xs]
+nub = nubBy elem
+
+nubBy _ [] = []
+nubBy f [x : xs]
+    | f x xs = (nubBy f xs)
+    | otherwise = [x : nubBy f xs]
 
 elem = elemBy (==)
 
