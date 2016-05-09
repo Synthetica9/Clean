@@ -5,9 +5,9 @@ import StdDynamic
 
 class Set a | TC, ==, toString a
 
-:: Set = Set [Dynamic]
+:: Set = Set [(Dynamic, String, (a, Dynamic -> Bool))]
 
-instance zero     Set
+instance zero Set
 where zero = abort "zero instance voor Set nog niet geimplementeerd.\n"
 
 instance toString Set
