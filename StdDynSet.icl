@@ -24,7 +24,7 @@ where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
 toSet :: a -> Set | Set a
 toSet a = listToSet [a]
 
-listToSet :: [a] -> Set | Set a
+listToSet :: [a] -> Set | Set, Eq a
 listToSet xs = Set (map setElem (removeDup xs))
 
 setElem :: a -> (Dynamic, String, (Dynamic -> Bool)) | Set a
