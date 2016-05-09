@@ -74,7 +74,7 @@ isStrictSubset :: Set Set -> Bool
 isStrictSubset a b = abort "isStrictSubset nog niet geimplementeerd.\n"
 
 union :: Set Set -> Set
-union (Set x) (Set y) = abort "Errrrrrr!"
+union (Set x) (Set y) = (nubBy (elemBy elemEq)) (x ++ y)
 
 intersection :: Set Set -> Set
 intersection a b = abort "intersection nog niet geimplementeerd.\n"
