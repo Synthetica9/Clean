@@ -71,7 +71,7 @@ checkEmpty :: (Set -> Set -> Set) Set Set -> Bool
 checkEmpty f x y = isEmptySet (f x y)
 
 isSubset :: Set Set -> Bool
-isSubse = checkEmpty without
+isSubset = checkEmpty without
 
 isStrictSubset :: Set Set -> Bool
 isStrictSubset a b = isSubset a b && not a == b
@@ -80,7 +80,7 @@ union :: Set Set -> Set
 union (Set x) (Set y) = Set ((nubBy (elemBy elemEq)) (x ++ y))
 
 intersection :: Set Set -> Set
-intersection a b = union (without a b) (without b a)
+intersection a b = union (without a b) (without b a)s
 
 without :: Set Set -> Set
 without a b = filterSet (notMemberOfSet b) a
