@@ -68,7 +68,7 @@ memberOfSet x (Set [(_, _, f) : ys])
     | f (dynamic x) = True // Let's just hope f isn't lying...
     | otherwise = memberOfSet x (Set ys)
 
-notMemberOfSet s = ! memberOfSet s
+notMemberOfSet s = not (memberOfSet s)
 
 checkEmpty :: (Set -> Set -> Set) Set Set -> Bool
 checkEmpty f x y = isEmptySet (f x y)
@@ -77,7 +77,7 @@ isSubset :: Set Set -> Bool
 isSubset a b = checkEmpty without
 
 isStrictSubset :: Set Set -> Bool
-isStrictSubset a b = checkEmpty
+isStrictSubset a b = abort "errr"
 
 union :: Set Set -> Set
 union (Set x) (Set y) = Set ((nubBy (elemBy elemEq)) (x ++ y))
