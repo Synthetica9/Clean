@@ -21,7 +21,7 @@ instance toString Set where
 instance == Set
 where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
 
-instance <= Set where
+instance Ord Set where
     (<=) = checkEmpty without
 
 toSet :: a -> Set | Set a
