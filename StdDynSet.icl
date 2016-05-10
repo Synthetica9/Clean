@@ -85,6 +85,6 @@ intersection :: Set Set -> Set
 intersection a b = union (without a b) (without b a)
 
 without :: Set Set -> Set
-without a b = filterSet (\ g -> notMemberOfSet g b) a
+without a b = filterSet ((flip notMemberOfSet) b) a
 
 Start = toString (union (listToSet [1,2,3, 2, 2, 3]) (listToSet ["Hello", "world"]))
