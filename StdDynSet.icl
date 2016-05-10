@@ -18,11 +18,8 @@ instance toString Set where
         trailing [] = "}"
         trailing [(_, s, _) : xs] = ", " +++ s +++ trailing xs
 
-instance == Set
-where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
-
-instance Ord Set where
-    (<) a b = (isStrictSubset a b) && not (isStrictSubset b a)
+instance == Set where
+    == a b = isSubset a b && isSubset b a
 
 toSet :: a -> Set | Set a
 toSet a = listToSet [a]
@@ -77,7 +74,7 @@ isSubset :: Set Set -> Bool
 isSubset a b = checkEmpty without
 
 isStrictSubset :: Set Set -> Bool
-isStrictSubset a b = abort "errr"
+isStrictSubset a b = isSubset a b && a /= b
 
 union :: Set Set -> Set
 union (Set x) (Set y) = Set ((nubBy (elemBy elemEq)) (x ++ y))
