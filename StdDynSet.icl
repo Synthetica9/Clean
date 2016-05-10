@@ -80,7 +80,7 @@ union :: Set Set -> Set
 union (Set x) (Set y) = Set ((nubBy (elemBy elemEq)) (x ++ y))
 
 intersection :: Set Set -> Set
-intersection a b = union (without a b) (without b a)s
+intersection a b = union (without a b) (without b a)
 
 without :: Set Set -> Set
 without a b = filterSet (notMemberOfSet b) a
