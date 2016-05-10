@@ -33,7 +33,11 @@ listToSet :: [a] -> Set | Set a
 listToSet [] = Set []
 listToSet xs = Set (map setElem (nub xs))
 
-filterSet f (Set x) = Set (filter f x)
+filterSet :: (a -> Bool) Set -> Set
+filterSet f (Set []) = zero
+filterSet f (Set [x=(e :: a^, _, _) : xs])
+    | f e = x ++ xs
+filterSet f (Set [x : xs]) = xs
 
 nub = nubBy elem
 
