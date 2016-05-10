@@ -22,7 +22,7 @@ instance == Set
 where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
 
 instance Ord Set where
-    (<=) = checkEmpty without
+    (<) a b = (isStrictSubset a b) && not (isStrictSubset b a)
 
 toSet :: a -> Set | Set a
 toSet a = listToSet [a]
