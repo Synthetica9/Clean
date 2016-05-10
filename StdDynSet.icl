@@ -18,9 +18,11 @@ instance toString Set where
         trailing [] = "}"
         trailing [(_, s, _) : xs] = ", " +++ s +++ trailing xs
 
-
 instance == Set
 where == a b = abort "== instance voor Set nog niet geimplementeerd.\n"
+
+instance <= Set where
+    (<=) = checkEmpty without
 
 toSet :: a -> Set | Set a
 toSet a = listToSet [a]
@@ -31,6 +33,8 @@ elemEq (a, _, _) (_, _, f) = f a
 listToSet :: [a] -> Set | Set a
 listToSet [] = Set []
 listToSet xs = Set (map setElem (nub xs))
+
+filterSet f (Set x) = Set (filter f x)
 
 nub = nubBy elem
 
@@ -64,22 +68,24 @@ memberOfSet x (Set [(_, _, f) : ys])
     | f (dynamic x) = True // Let's just hope f isn't lying...
     | otherwise = memberOfSet x (Set ys)
 
+notMemberOfSet s = ! memberOfSet s
+
 checkEmpty :: (Set -> Set -> Set) Set Set -> Bool
 checkEmpty f x y = isEmptySet (f x y)
 
 isSubset :: Set Set -> Bool
-isSubset a b = abort "isSubset nog niet geimplementeerd.\n"
+isSubset a b = checkEmpty without
 
 isStrictSubset :: Set Set -> Bool
-isStrictSubset a b = abort "isStrictSubset nog niet geimplementeerd.\n"
+isStrictSubset a b = checkEmpty
 
 union :: Set Set -> Set
 union (Set x) (Set y) = Set ((nubBy (elemBy elemEq)) (x ++ y))
 
 intersection :: Set Set -> Set
-intersection a b = abort "intersection nog niet geimplementeerd.\n"
+intersection a b = union (without a b) (without b a)
 
 without :: Set Set -> Set
-without a b = abort "without nog niet geimplementeerd.\n"
+without a b = filterSet (notMemberOfSet b) a
 
 Start = toString (union (listToSet [1,2,3, 2, 2, 3]) (listToSet ["Hello", "world"]))
