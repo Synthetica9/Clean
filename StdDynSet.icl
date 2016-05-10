@@ -74,7 +74,7 @@ isSubset :: Set Set -> Bool
 isSubset a b = checkEmpty without
 
 isStrictSubset :: Set Set -> Bool
-isStrictSubset a b = isSubset a b && a /= b
+isStrictSubset a b = isSubset a b && a != b
 
 union :: Set Set -> Set
 union (Set x) (Set y) = Set ((nubBy (elemBy elemEq)) (x ++ y))
