@@ -71,7 +71,7 @@ checkEmpty :: (Set -> Set -> Set) Set Set -> Bool
 checkEmpty f x y = isEmptySet (f x y)
 
 isSubset :: Set Set -> Bool
-isSubset = checkEmpty without
+isSubset a b = checkEmpty without a b
 
 isStrictSubset :: Set Set -> Bool
 isStrictSubset a b = isSubset a b && not a == b
