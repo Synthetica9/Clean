@@ -27,6 +27,8 @@ toSet a = listToSet [a]
 elemEq :: SetElem SetElem -> Bool
 elemEq (a, _, _) (_, _, f) = f a
 
+elemNeq a b = not (elemEq a b)
+
 listToSet :: [a] -> Set | Set a
 listToSet [] = Set []
 listToSet xs = Set (map setElem (nub xs))
@@ -83,6 +85,6 @@ intersection :: Set Set -> Set
 intersection a b = union (without a b) (without b a)
 
 without :: Set Set -> Set
-without a b = filterSet (notMemberOfSet b) a
+without a b = filterSet (\ g -> notMemberOfSet g b) a
 
 Start = toString (union (listToSet [1,2,3, 2, 2, 3]) (listToSet ["Hello", "world"]))
